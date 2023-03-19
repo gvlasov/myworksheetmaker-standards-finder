@@ -14,9 +14,6 @@ const actions = {
     addItemToStandards ({ state, commit }, standard) {
         commit('addItemToStandards', { standard })
     },
-    removeItemFromStandardsByIndex ({ state, commit }, index) {
-        commit('removeItemFromStandardsByIndex', { index })
-    },
     removeItemFromStandards ({ state, commit }, standard) {
         commit('removeItemFromStandards', { standard })
     },
@@ -29,9 +26,6 @@ const actions = {
 const mutations = {
     addItemToStandards (state, { standard }) {
         state.items.push(standard)
-    },
-    removeItemFromStandardsByIndex (state, { index }) {
-        state.items.splice(index, 1)
     },
     removeItemFromStandards (state, { standard }) {
         state.items.splice(

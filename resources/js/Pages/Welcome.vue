@@ -158,7 +158,7 @@
         },
         methods: {
             removeStandard(index) {
-                this.$store.dispatch('standards/removeItemFromStandardsByIndex', index)
+                this.$store.dispatch('standards/removeItemFromStandards', index)
             },
             clearAllStandards () {
                 this.$store.dispatch('standards/clearAllStandards')

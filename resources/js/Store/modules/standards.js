@@ -17,6 +17,9 @@ const actions = {
     removeItemFromStandardsByIndex ({ state, commit }, index) {
         commit('removeItemFromStandardsByIndex', { index })
     },
+    clearAllStandards ({ state, commit }) {
+        commit('clearAllStandards')
+    },
 }
 
 // mutations
@@ -26,6 +29,9 @@ const mutations = {
     },
     removeItemFromStandardsByIndex (state, { index }) {
         state.items.splice(index, 1)
+    },
+    clearAllStandards (state) {
+        state.items.splice(0, state.items.length)
     },
 
 }

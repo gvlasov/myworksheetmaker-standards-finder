@@ -1,34 +1,25 @@
 <template>
      <div class="space-y-5 px-6">
-        <div class="relative flex items-start" v-for="(standard, index) in standards" :key="index">
-            <div class="flex h-6 items-center">
-                <input
-                    :id="index"
-                    name="comments"
-                    type="checkbox"
-                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    @change.native="changeStandard($event, standard)"
-                />
-            </div>
-            <div class="ml-3 text-sm leading-6">
-                <label :for="index" class="font-bold text-gray-900 cursor-pointer">{{ standard.code }}</label>
-                <p class="text-gray-500">{{ standard.description }}</p>
-            </div>
-        </div>
+        <StandardCheckbox v-for="(standard, index) in standards" :standard="standard" :index="index"/>
      </div>
 </template>
 
 <script>
+    import StandardCheckbox from "@/Components/StandardCheckbox.vue";
     export default {
+        components: {StandardCheckbox},
         props: ['standards'],
-        methods: {
-            changeStandard (event, standard) {
-                if (event.target.checked) {
-                    this.$store.dispatch('standards/addItemToStandards', standard)
-                } else {
-                    this.$store.dispatch('standards/removeItemFromStandards', standard)
+        computed: {
+            standardSelection: (code) => {
+                return {
+                    get() {
+                        return this.$store.getters['standards/standardSelection'](code)
+                    },
+                    set(value) {
+                        this.$store.dispatch('standards/setStandardSelection', code, value)
+                    },
                 }
             }
-        }
+        },
     }
 </script>
